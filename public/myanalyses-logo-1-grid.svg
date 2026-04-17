@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 60" width="260" height="60">
+  <defs>
+    <style>
+      .wordmark { font-family: -apple-system, 'SF Pro Display', 'Segoe UI', sans-serif; font-size: 26px; font-weight: 600; fill: #1a1a2e; }
+      .wordmark-accent { font-family: -apple-system, 'SF Pro Display', 'Segoe UI', sans-serif; font-size: 26px; font-weight: 700; fill: #4a3fcf; }
+    </style>
+  </defs>
+
+  <!-- 3x3 dot grid mark -->
+  <circle cx="14" cy="14" r="3" fill="#c8c5f0"/>
+  <circle cx="26" cy="14" r="3" fill="#c8c5f0"/>
+  <circle cx="38" cy="14" r="3" fill="#c8c5f0"/>
+
+  <circle cx="14" cy="26" r="3" fill="#c8c5f0"/>
+  <circle cx="26" cy="26" r="3.5" fill="#4a3fcf"/>
+  <circle cx="38" cy="26" r="3.5" fill="#4a3fcf"/>
+
+  <circle cx="14" cy="38" r="3" fill="#c8c5f0"/>
+  <circle cx="26" cy="38" r="3.5" fill="#4a3fcf"/>
+  <circle cx="38" cy="38" r="4.5" fill="#2d22b3"/>
+
+  <!-- Wordmark -->
+  <text x="56" y="40">
+    <tspan class="wordmark-accent">My</tspan><tspan class="wordmark">Analyses</tspan>
+  </text>
+</svg>

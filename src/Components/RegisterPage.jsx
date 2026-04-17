@@ -35,14 +35,14 @@ const RegisterPage = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl shadow-slate-200/60 border border-slate-100 p-8 md:p-10">
+      <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl shadow-slate-200/60 border border-indigo-300 p-8 md:p-10">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-black text-slate-800 tracking-tight">Join Us</h2>
           <p className="text-slate-500 mt-2">Create your professional account</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-          <InputGroup label="Full Name" type="text" placeholder="Krish lad" register={register('fullName')} error={errors.fullName} />
+          <InputGroup label="Full Name" type="text" placeholder="Name" register={register('fullName')} error={errors.fullName} />
           <InputGroup label="Email Address" type="email" placeholder="kl@example.com" register={register('email')} error={errors.email} />
           <InputGroup label="Password" type="password" placeholder="••••••••" register={register('password')} error={errors.password} />
 
@@ -52,14 +52,13 @@ const RegisterPage = () => {
         </form>
 
         <p className="mt-8 text-center text-slate-600 text-sm font-medium">
-          Already have an account? <Link to="/" className="text-indigo-600 font-bold hover:underline underline-offset-4">Log in</Link>
+          Already have an account? <Link to="/" className="text-indigo-600  hover:underline underline-offset-4">Log in</Link>
         </p>
       </div>
     </div>
   );
 };
 
-// Helper component for cleaner code
 const InputGroup = ({ label, type, placeholder, register, error }) => (
   <div className="space-y-1.5">
     <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">{label}</label>
