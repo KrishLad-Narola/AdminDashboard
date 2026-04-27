@@ -258,7 +258,7 @@ const ProjectTable = ({ projects, setProjects, limit, showAddForm }) => {
         <table className="w-full text-left">
           <thead className="bg-slate-50/50 text-slate-400 text-[10px] uppercase font-black">
             <tr>
-              <th className="px-6 py-4">Project Title (from API)</th>
+              <th className="px-6 py-4">Project Title</th>
               <th className="px-6 py-4">Status</th>
               <th className="px-6 py-4">Date</th>
               <th className="px-6 py-4 text-right">Value</th>
@@ -306,20 +306,79 @@ const AnalyticsView = () => (
   </div>
 );
 
-const SettingsView = ({ user }) => (
-  <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-2xl">
-    <h1 className="text-2xl font-black mb-6 text-slate-800">Settings</h1>
-    <div className="bg-white p-8 rounded-2xl border border-slate-200 space-y-6">
-      <div>
-        <label className="text-[10px] font-black text-slate-400 uppercase p-1 block mb-2">Full Name</label>
-        <input type="text" defaultValue={user.fullName} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition-all" />
-        <label className="text-[10px] font-black text-slate-400 uppercase mt-4 p-1 block mb-2">Email Address</label>
-        <input type="email" defaultValue={user.email} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition-all" />
+
+const SettingsView = ({ user }) => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+  });
+
+  useEffect(() => {
+    const savedData = localStorage.getItem("userSettings");
+    if (savedData) {
+      setFormData(JSON.parse(savedData));
+    } else {
+      setFormData({
+        fullName: user.fullName || "",
+        email: user.email || "",
+      });
+    }
+  }, [user]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+ 
+  const handleSave = () => {
+    localStorage.setItem("userSettings", JSON.stringify(formData));
+    alert("Changes saved successfully!");
+  };
+
+  return (
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-2xl">
+      <h1 className="text-2xl font-black mb-6 text-slate-800">Settings</h1>
+
+      <div className="bg-white p-8 rounded-2xl border border-slate-200 space-y-6">
+        <div>
+          <label className="text-[10px] font-black text-slate-400 uppercase p-1 block mb-2">
+            Full Name
+          </label>
+          <input
+            type="text"
+            name="fullName"
+            value={formData.fullName}
+            onChange={handleChange}
+            className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition-all"
+          />
+
+          <label className="text-[10px] font-black text-slate-400 uppercase mt-4 p-1 block mb-2">
+            Email Address
+          </label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition-all"
+          />
+        </div>
+
+        <button
+          onClick={handleSave}
+          className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold transition-all shadow-md"
+        >
+          Save Changes
+        </button>
       </div>
-      <button className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold transition-all shadow-md">Save Changes</button>
     </div>
-  </div>
-);
+  );
+};
+
 
 const ProfileView = ({ user, getInitials }) => (
   <div className="animate-in fade-in zoom-in-95 duration-500 max-w-md mx-auto ">
